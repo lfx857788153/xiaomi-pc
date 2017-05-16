@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html ng-app="demoApp">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="董书华" />
+    <title>angular增删查改及路由</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/angular-route.js"></script>
+</head>
+
+<body>
+    <div class="container" ng-view>
+        
+    </div>
+
+    <!--列表的模板-->
+    <script type="text/ng-template" id="list">
+        <button type="button" class="btn" ng-click="add()">添加</button>
+        <ul>
+            <li ng-repeat="d in list">
+                <header>
+                    <a href="{{d.url}}">{{d.title}} -- 索引值：{{$index}}</a>
+                </header>
+                <div class="content">
+                    <div class="c-left">
+                        <img src="{{d.image}}}" alt="logo">
+                    </div>
+                    <div class="c-right">
+                        <div class="c-header">{{d.content}}</div>
+                        <div class="c-footer">
+                            <span>评论({{d.comments}})</span>
+                            <span>喜欢({{d.loves}})</span>
+                            <span>时间({{d.time}})</span>
+                            <span><a href="javascript:void(0)" ng-click="edit($index)" >编辑</a></span>
+                            <span><a href="javascript:void(0)" ng-click="remove($index)" >删除</a></span>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </li>
+        </ul>
+    </script>
+
+    <!--添加页面模板-->
+    <script type="text/ng-template" id="add">
+        <h3>添加</h3>
+        <table>
+            <tr>
+                <td class="t-left">
+                    标题:
+                </td>
+                <td>
+                    <input type="text" ng-model="title">
+                </td>
+            </tr>
+            <tr>
+                <td class="t-left">
+                    链接:
+                </td>
+                <td>
+                    <input type="text" ng-model="url">
+                </td>
+            </tr>
+            <tr>
+                <td class="t-left">
+                    样图:
+                </td>
+                <td>
+                    <input type="text" ng-model="image">
+                </td>
+            </tr>
+            <tr>
+                <td class="t-left">
+                    介绍:
+                </td>
+                <td>
+                    <textarea rows="5" cols="50" ng-model="content"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="t-center">
+                    <button type="button" class="btn" ng-click="save()">保存</button>
+                    <button type="button" class="btn" ng-click="close()">关闭</button>
+                </td>
+            </tr>
+        </table>
+    </script>
+
+    <script src="src/app.js"></script>
+    <script src="src/addController.js"></script>
+    <script src="src/listController.js"></script>
+</body>
+
+</html>
