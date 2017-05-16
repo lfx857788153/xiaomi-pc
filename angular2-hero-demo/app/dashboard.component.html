@@ -1,0 +1,18 @@
+<h3>Top Heroes</h3>
+<div class="grid grid-pad">
+  <!--*ngFor是用来循环一个数组，相当于angular1中的ng-repeat, 注意此处的let具有块级作用域，不能使用var替代（会出错）
+  另外可以在template中使用的语法： ngFor let-hero [ngForOf]="heroes"
+
+  绑定事件的方式：(事件名称) = "方法名称(形参)"  
+  -->
+  <div *ngFor="let hero of heroes" (click)="gotoDetail(hero)" class="col-1-4">
+    <div class="module hero">
+      <!--插值表达式{{}}-->
+      <h4>{{hero.name}} - {{ 1 + 1 }}</h4>
+    </div>
+  </div>
+</div>
+<!--视图嵌套, 注意app.module.ts中要导入HeroSearchComponent组件
+hero-search对应于组件中的selector属性
+-->
+<hero-search></hero-search>

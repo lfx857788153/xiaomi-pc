@@ -1,0 +1,16 @@
+<!--*ngIf用来判断，如果满足条件，则显示，如果不满足则隐藏
+hero对应于组件中的hero属性，如果hero==null，则div不显示
+否则显示
+-->
+<div *ngIf="hero">
+  <h2>{{hero.name}} details!</h2>
+  <div>
+    <label>id: </label>{{hero.id}}</div>
+  <div>
+    <label>name: </label>
+    <!-- [(ngModel)] 实现双向数据绑定指令， 注意格式 -->
+    <input [(ngModel)]="hero.name" placeholder="name" />
+  </div>
+  <button (click)="goBack()">Back</button>
+  <button (click)="save()">Save</button>
+</div>

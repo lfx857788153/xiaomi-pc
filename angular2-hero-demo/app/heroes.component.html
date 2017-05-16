@@ -1,0 +1,49 @@
+<h2>My Heroes</h2>
+
+<ul class="heroes">
+  <!-- [class.selected] 判断hero === selectedHero添加selected样式类，否则就是空 -->
+  <li *ngFor="let hero of heroes" (click)="onSelect(hero)" 
+  [class.selected]="hero === selectedHero">
+    <span class="hero-element">
+      <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </span>
+    <button class="delete-button" (click)="deleteHero(hero, $event)">Delete</button>
+  </li>
+</ul>
+
+<!--*ngIf-->
+<div class="error" *ngIf="error">{{error}}</div>
+
+<button (click)="addHero()">Add New Hero</button>
+<div *ngIf="addingHero">
+  <!--(close)是自定义的事件，业务逻辑对应于heroes.component.ts中的close()方法，这个方法在hero-detail-component组件中通过EventEmitter对象的emit()调起的  $event事件句柄-->
+  <my-hero-detail (close)="close($event)"></my-hero-detail>
+</div>
+
+<div *ngIf="selectedHero">
+  <h2>
+    {{selectedHero.name | uppercase}} is my hero
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>
+
+<div>
+  <style>
+    .hidden { visibility: hidden}
+  </style>
+  <h4>ngFor Features</h4>
+  <button (click)="showNgFor=!showNgFor">{{showNgFor ? 'Hide' : 'Show'}} ngFor Features</button>
+  <table [class.hidden]="!showNgFor">
+    <tbody>
+      <tr *ngFor="let hero of heroes; let ix = index; let c = count; let e = even; let o = odd; let f = first; let l = last">
+        <td>{{hero.name}}-{{index}}</td>
+        <td>{{ix}}</td>
+        <td>{{c}}</td>
+        <td>{{e}}</td>
+        <td>{{o}}</td>
+        <td>{{f}}</td>
+        <td>{{l}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

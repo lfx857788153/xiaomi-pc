@@ -1,0 +1,16 @@
+<div id="search-component">
+  <h4>Hero Search</h4>
+  <!--#searchBox理解成给input标签起一个id
+  keyup键盘弹起时执行的事件
+  search()会返回数组供*ngFor指令使用
+  searchBox.value指input中输入的值
+  -->
+  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+  <div>
+    <!--async过滤器， 要使用异步-->
+    <div *ngFor="let hero of heroes | async"
+         (click)="gotoDetail(hero)" class="search-result" >
+      {{hero.name}}
+    </div>
+  </div>
+</div>
